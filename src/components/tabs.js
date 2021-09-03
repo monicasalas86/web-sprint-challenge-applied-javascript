@@ -1,3 +1,6 @@
+import axios from "axios"
+import { topics } from "../mocks/data"
+
 const Tabs = (topics) => {
   // TASK 3
   // ---------------------
@@ -25,9 +28,11 @@ const Tabs = (topics) => {
   // structure
   topicsDiv.appendChild(tabDiv)
 
-  return topicsDiv
-
+  return topicsDiv;
 }
+
+
+const tabsContainer = document.querySelector('.tabs-container')
 
 const tabsAppender = (selector) => {
   // TASK 4
@@ -37,6 +42,16 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
+  axios.get(`http://localhost:5000/api/topics`)
+  .then(resp => {
+    //console.log(resp.data);
+    const getTopic = Tabs(resp.data);
+    tabsContainer.appendChild(getTopic);
+  })
+  .catch(err => {
+    console.log('this is an error')
+  })
 }
+
 
 export { Tabs, tabsAppender }
