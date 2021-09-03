@@ -18,16 +18,14 @@ const Tabs = (topics) => {
   //
   // create elements
   const topicsDiv = document.createElement('div')
-  const tabDiv = document.createElement('div')
-
-  // class name, text
   topicsDiv.classList.add('topics')
-  tabDiv.classList.add('tab')
-  tabDiv.textContent = `${topics}`
-
-  // structure
-  topicsDiv.appendChild(tabDiv)
-
+  
+  topics.forEach(item => {
+    const tabDiv = document.createElement('div')
+    tabDiv.classList.add('tab')
+    tabDiv.textContent = item;
+    topicsDiv.appendChild(tabDiv)
+  })
   return topicsDiv;
 }
 
